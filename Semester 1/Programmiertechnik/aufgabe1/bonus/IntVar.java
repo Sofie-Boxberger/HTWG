@@ -7,8 +7,8 @@ import java.util.Scanner;
 /**
  * IntVar zeigt den Umgang mit Variablen vom Typ int.
  * &Uuml;bungsaufgabe 1 zur Programmiertechnik 1.
- * @author Dominik Nowara
- * @version 28.03.2023
+ * @author Sofie Boxberger
+ * @version -
  */
 public final class IntVar {
     private IntVar() { }
