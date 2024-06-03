@@ -1,6 +1,6 @@
 // Klausurergebnis.java
 package aufgabe4;
-//import aufgabe4.schweiz.Noten;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -26,11 +26,12 @@ import java.util.Scanner;
  * <li>die Durchfallquote</li>
  * </ul>
  *
- * @author TODO: Name eintragen
- * @version TODO: Datum eintragen
+ * @author Sofie Boxberger
+ * @version 28.05.2024
  */
 public final class Klausurergebnis {
-    private Klausurergebnis() { }
+    private Klausurergebnis() {
+    }
 
     private static final Scanner EINGABE = new Scanner(System.in);
 
@@ -41,34 +42,55 @@ public final class Klausurergebnis {
     public static void main(String[] args) {
         Locale.setDefault(Locale.GERMAN);
 
-        //--------------------------------------------------- Noten einlesen
+        int passed = 0;
+        int failed = 0;
+        int noteSum = 0;
+        final double x = 100.0;
+        double average = 0.0;
+        double best = Noten.SCHLECHTESTE;
+        double worst = Noten.BESTE;
+
+    //--------------------------------------------------- Noten einlesen
         System.out.println("Noten im Format Ganze,Zehntel "
-                           + "oder Ganze.Zehntel eingeben "
-                           + "(Ende mit Strg-D/Strg-Z):");
+                + "oder Ganze.Zehntel eingeben (Ende mit Strg-D):");
 
         while (EINGABE.hasNext()) {
             String note = EINGABE.next();
 
-            //---------------------------------------------- Eingabe pruefen
-
-            /* TODO: (1) note pruefen ... */
-
-
+        //---------------------------------------------- Eingabe pruefen
+            if (!Noten.istZulaessig(note)) {
+                System.out.println("Unzulaessige Note " + note + " wird "
+                                   + "ignoriert!");
+                continue;
+            }
             //------------------------------------------------ Note erfassen
 
-            /* TODO: (2) Notensumme Bestandene, Anzahl Bestandene,
-                         Anzahl Durchgefallene sowie
-                         beste und schlechteste Note aktualisieren ... */
+            double noteCurrent = Noten.toDouble(note);
 
+            if (Noten.istBestanden(noteCurrent)) {
+                passed++;
+                average += noteCurrent;
+            } else {
+                failed++;
+            }
 
+            best = Noten.bessere(best, noteCurrent);
+            worst = Noten.schlechtere(worst, noteCurrent);
         } // while
 
         //------------------------------------------ Notenstatistik ausgeben
 
-        /* TODO: (3) Durchschnitt und Durchfallquote berechnen
-                     und dann die gesamte Statistik ausgeben ... */
+        double averagePassed = (double) average / (double) passed;
+        double averageFailed = (double) failed / (passed + failed) * x;
 
-
+        System.out.println("Anzahl beruecksichtigter Noten: "
+                           + (passed + failed));
+        System.out.println("Anzahl Bestandene: " + passed);
+        System.out.println("Beste Note: " + Noten.toString(best));
+        System.out.println("Schlechteste Note: " + Noten.toString(worst));
+        System.out.println("Durchschnitt Bestandene: " + String.format("%.1f",
+                averagePassed));
+        System.out.println("Durchfallquote: " + String.format("%.1f%%",
+                averageFailed));
     } // main
 }
-
