@@ -23,7 +23,7 @@ package aufgabe4;
  * und die schlechteste Note in einer Liste von Noten
  * zu bestimmen oder um zu prüfen, ob jemand eine Prüfung bestanden hat.
  * </p>
- * @author Dein Name
+ * @author Sofie Boxberger
  * @version 03.06.2024
  */
 
