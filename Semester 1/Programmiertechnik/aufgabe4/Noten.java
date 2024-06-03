@@ -52,17 +52,17 @@ public final class Noten {
         //---------------------------------------------------Überprüfen
 
         switch (note.charAt(0)) {
-        case 1:
-        case 2:
-        case 3:
+        case '1':
+        case '2':
+        case '3':
             if (note.charAt(2) == '0'
                 || note.charAt(2) == '3'
                 || note.charAt(2) == '7') {
                 return true;
             }
             break;
-        case 4:
-        case 5:
+        case '4':
+        case '5':
             if (note.charAt(2) == '0') {
                 return true;
             }
