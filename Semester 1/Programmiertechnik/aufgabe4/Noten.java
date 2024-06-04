@@ -23,7 +23,7 @@ package aufgabe4;
  * und die schlechteste Note in einer Liste von Noten
  * zu bestimmen oder um zu prüfen, ob jemand eine Prüfung bestanden hat.
  * </p>
- * @author Dein Name
+ * @author Sofie
  * @version 03.06.2024
  */
 
@@ -44,32 +44,38 @@ public final class Noten {
     public static boolean istZulaessig(String note) {
         // Methode Logik...
         if (note.length() != 3
-            || !Character.isDigit(note.charAt(0))          //
+            || !Character.isDigit(note.charAt(0))
             || (note.charAt(1) != '.' && note.charAt(1) != ',')
             || !Character.isDigit(note.charAt(2))) {
+            System.out.println("Note " + note + " wird "
+                    + "wegen Formatfehler ignoriert!");
             return false;
         }
         //---------------------------------------------------Überprüfen
 
         switch (note.charAt(0)) {
-        case 1:
-        case 2:
-        case 3:
+        case '1':
+        case '2':
+        case '3':
             if (note.charAt(2) == '0'
                 || note.charAt(2) == '3'
                 || note.charAt(2) == '7') {
                 return true;
             }
             break;
-        case 4:
-        case 5:
+        case '4':
+        case '5':
             if (note.charAt(2) == '0') {
                 return true;
             }
             break;
         default:
+            System.out.println("Note " + note + " wird "
+                + "wegen Vorkommastelle " + note.charAt(0) + " ignoriert!");
             return false;
         }
+        System.out.println("Note " + note + " wird "
+            + "wegen Nachkommastelle " + note.charAt(2) + " ignoriert!");
         return false;
     }
 

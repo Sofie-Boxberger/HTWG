@@ -51,16 +51,14 @@ public final class Klausurergebnis {
         double worst = Noten.BESTE;
 
     //--------------------------------------------------- Noten einlesen
-        System.out.println("Noten im Format Ganze,Zehntel "
-                + "oder Ganze.Zehntel eingeben (Ende mit Strg-D):");
+        System.out.println("Noten Ganze,Zehntel "
+                + "oder Ganze.Zehntel eingeben (Ende mit Strg-D/Strg-Z):");
 
         while (EINGABE.hasNext()) {
             String note = EINGABE.next();
 
         //---------------------------------------------- Eingabe pruefen
             if (!Noten.istZulaessig(note)) {
-                System.out.println("Unzulaessige Note " + note + " wird "
-                                   + "ignoriert!");
                 continue;
             }
             //------------------------------------------------ Note erfassen
@@ -83,14 +81,17 @@ public final class Klausurergebnis {
         double averagePassed = (double) average / (double) passed;
         double averageFailed = (double) failed / (passed + failed) * x;
 
-        System.out.println("Anzahl beruecksichtigter Noten: "
-                           + (passed + failed));
+        System.out.println("\nAnzahl beruecksichtigter Noten: "
+            + (passed + failed));
         System.out.println("Anzahl Bestandene: " + passed);
-        System.out.println("Beste Note: " + Noten.toString(best));
-        System.out.println("Schlechteste Note: " + Noten.toString(worst));
-        System.out.println("Durchschnitt Bestandene: " + String.format("%.1f",
-                averagePassed));
-        System.out.println("Durchfallquote: " + String.format("%.1f%%",
-                averageFailed));
+        if (passed + failed > 0) {
+            System.out.println("Beste Note: " + Noten.toString(best));
+            System.out.println("Schlechteste Note: " + Noten.toString(worst));
+            System.out.println("Durchschnitt Bestandene: "
+                    + String.format("%.1f",
+                    averagePassed));
+            System.out.println("Durchfallquote: " + String.format("%.1f%%",
+                    averageFailed));
+        }
     } // main
 }
