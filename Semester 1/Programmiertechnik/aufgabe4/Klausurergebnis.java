@@ -59,6 +59,8 @@ public final class Klausurergebnis {
 
         //---------------------------------------------- Eingabe pruefen
             if (!Noten.istZulaessig(note)) {
+                System.out.println("Unzulaessige Note "
+                    + note + " wird ignoriert!");
                 continue;
             }
             //------------------------------------------------ Note erfassen
